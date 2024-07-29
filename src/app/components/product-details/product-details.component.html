@@ -1,0 +1,26 @@
+@if(product){
+  
+<div class="card mb-3" style="margin-top: 10rem;">
+
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="product.image" class="img-fluid rounded-start" alt="{{ product.title }}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+        <p class="card-text"><strong>Price:</strong> {{ product.price | currency: '$'}}</p>
+        <p class="card-text">
+          <strong>Rating:</strong> {{ product.rating.rate }} 
+          <span class="text-muted">({{ product.rating.count }} reviews)</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+}
+@else{
+  <div><strong class="bg-danger">product not found</strong></div>
+}

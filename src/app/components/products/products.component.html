@@ -1,0 +1,29 @@
+<div class="container my-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4 equal-height-row">
+    <div *ngFor="let product of allProducts" class="col">
+      <div class="card" style="height: 100%;">
+        <img [src]="product.image" class="card-img-top" alt="{{ product.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+          <p class="card-text"><strong>Price:</strong> {{ product.price | currency: '$' }}</p>
+          <p class="card-text">
+            <strong>Rating:</strong> {{ product.rating.rate }}
+            <span class="text-muted">({{ product.rating.count }} reviews)</span>
+          </p>
+        
+        </div>
+        <div class="card-footer">
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" placeholder="Quantity" #quantityInput min="1" value="1">
+            <button class="btn btn-danger" (click)="addToCart(product, quantityInput.value)">Add to Cart</button>
+          </div>
+          <a [routerLink]="['/product-details', product.id]">
+            <button class="btn btn-warning btn-block">Show Details</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

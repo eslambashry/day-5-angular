@@ -1,0 +1,33 @@
+<div class="container my-4">
+  <h2>Shopping Cart</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>{{ item.product.title }}</td>
+        <td>
+          <input type="number" [value]="item.quantity" min="1" (change)="updateQuantity(item.product, $event)">
+        </td>
+        <td>{{ item.product.price | currency: 'USD' }}</td>
+        <td>{{ (item.product.price * item.quantity) | currency: 'USD' }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeFromCart(item.product.id)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-end my-4">
+    <h3>Total: {{ totalPrice | currency: 'USD' }}</h3>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-secondary" (click)="clearCart()">Clear Cart</button>
+  </div>
+</div>
